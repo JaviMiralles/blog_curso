@@ -16,6 +16,11 @@ class PostController extends Controller
 
 
 
-        return view('admin.post.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
+    }
+
+    public function create()
+    {
+        return view('admin.posts.create');
     }
 }
