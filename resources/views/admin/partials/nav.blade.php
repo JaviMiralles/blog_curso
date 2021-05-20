@@ -11,7 +11,7 @@
         </a>
       <ul class="treeview-menu">
         <li {{request()->is('admin/posts') ? 'class=active' : ''}}><a href="{{ route('admin.posts.index') }}"><i class="fa fa-eye"></i> Ver todos los post</a></li>
-        <li {{request()->is('admin/create') ? 'class=active' : ''}}><a href="{{ route('admin.posts.create') }}"><i class="fa fa-pencil"></i>Crear un Post</a></li>
+        <li ><a href="#"data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil"></i>Crear un Post</a></li>
       </ul>
     </li>
   </ul><!-- /.sidebar-menu -->

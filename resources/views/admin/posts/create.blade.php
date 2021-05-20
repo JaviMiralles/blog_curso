@@ -1,46 +1,26 @@
-@extends('admin.layout')
-@section('header')
-<h1>Todos los post</h1>
-  <ol class="breadcrumb">
-    <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li><a href="{{ route('admin.posts.index') }}"><i class="fa fa-list"></i> Posts</a></li>
-    <li class="active">Crear</li>
-  </ol>
-  @stop
-@section('content')
-
-<h1>Crear un post</h1>
-<div class="row">
-    <form action="">
-    <div class="col-md-8">
-        <div class="box box-primary">
-            <div class="box">
-                <div class="box-body">
-                    <label for="">Título de Post</label>
-                    <input name="title" placeholder="Título de la publicación"  type="text" class="form-control">
-                </div>
-                <div class="box-body">
-                    <label for="">Extracto</label>
-                    <textarea name="excerpt" id="excerpt" class="form-control" placeholder="ingresa el extracto de la publicación"></textarea>
-                </div>
-                <div class="box-body">
-                    <label for="">Contenido del post</label>
-                    <textarea rows="10" name="body" id="excerpt" class="form-control" placeholder="ingresa el contenido"></textarea>
-                </div>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="POST" action="{{ route('admin.posts.store')}}">
+        {{ csrf_field() }}
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agrega un título para la nueva publicación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
+                {{-- <label for="">Título de Post</label> --}}
+                <input name="title" value="{{old('title')}}" placeholder="Título de la publicación"  type="text" class="form-control">
+                {!!$errors->first('title','<span class="help-block">:message</span>')!!}
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="form-group">
-                  <label for="">Fecha publicación</label>
-                  <textarea name="" id="" cols="30" rows="10"></textarea>
-                </div>
-            </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary">Crear publicación</button>
         </div>
     </div>
-</form>
+    </div>
+    </form>
 </div>
-@endsection

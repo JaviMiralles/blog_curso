@@ -16,7 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="/adminlte/plugins/datatables/dataTables.bootstrap.css">
+
+
+    @stack('styles')
+
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -259,6 +262,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
+        @if (session()->has('flash'))
+            <div class="alert alert-success">{{session('flash')}}</div>
+        @endif
+
          @yield('content')
 
         </section><!-- /.content -->
@@ -344,26 +351,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/adminlte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="/adminlte/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
+    @stack('scripts')
     <script src="/adminlte/js/app.min.js"></script>
-
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-         Both of these plugins are recommended to enhance the
-         user experience. Slimscroll is required when using the
-         fixed layout. -->
-    <script>
-    $(function () {
-        $('#post-table').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-        });
-    });
-    </script>
+    @include('admin.posts.create')
   </body>
 </html>
